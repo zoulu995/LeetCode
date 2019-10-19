@@ -8,24 +8,31 @@
 class MinStack {
 public:
     /** initialize your data structure here. */
+    stack<int> stk;
+    stack<int> minstk;
     MinStack() {
-        
     }
     
     void push(int x) {
-        
+        stk.push(x);
+        if (minstk.empty()) minstk.push(x);
+        else
+            minstk.push(min(minstk.top(), x));
     }
     
     void pop() {
-        
+        if (stk.size()) {
+            stk.pop();
+            minstk.pop();
+        }
     }
     
     int top() {
-        
+        return stk.top();
     }
     
     int getMin() {
-        
+        return minstk.top();
     }
 };
 
